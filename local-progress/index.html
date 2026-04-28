@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Claude Code 学习进度</title>
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    :root {
+      color-scheme: light;
+      --bg: #f6f7fb;
+      --panel: #ffffff;
+      --panel-soft: #f0f4ff;
+      --text: #182033;
+      --muted: #5d667a;
+      --border: #d9deea;
+      --accent: #3157d5;
+      --accent-strong: #1f3fa8;
+      --done: #147d52;
+      --danger: #b42318;
+      --shadow: 0 10px 30px rgba(24, 32, 51, 0.08);
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .shell {
+      width: min(980px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 32px 0 48px;
+    }
+
+    header {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 18px;
+      align-items: center;
+      margin-bottom: 22px;
+    }
+
+    .logo {
+      width: 64px;
+      height: 64px;
+      border-radius: 8px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      padding: 9px;
+      box-shadow: var(--shadow);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 28px;
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    .subtitle {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      margin: 18px 0 20px;
+    }
+
+    button,
+    .import-label {
+      min-height: 36px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--panel);
+      color: var(--text);
+      font: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 0 14px;
+      cursor: pointer;
+    }
+
+    button:hover,
+    .import-label:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    #resetBtn {
+      color: var(--danger);
+    }
+
+    input[type="file"] {
+      display: none;
+    }
+
+    .saved {
+      margin-left: auto;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .summary {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+      margin-bottom: 18px;
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    .summary-row strong {
+      color: var(--text);
+      font-size: 22px;
+    }
+
+    .track {
+      height: 10px;
+      background: #e4e9f5;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .fill {
+      height: 100%;
+      width: 0;
+      background: var(--accent);
+      border-radius: inherit;
+      transition: width 0.2s ease;
+    }
+
+    main {
+      display: grid;
+      gap: 12px;
+    }
+
+    .module {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      box-shadow: 0 4px 14px rgba(24, 32, 51, 0.04);
+      overflow: hidden;
+    }
+
+    .module.complete {
+      border-color: rgba(20, 125, 82, 0.45);
+    }
+
+    .module-head {
+      width: 100%;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 12px;
+      min-height: 64px;
+      padding: 12px 16px;
+      background: transparent;
+      border: 0;
+      text-align: left;
+      color: inherit;
+    }
+
+    .module-head:hover {
+      background: var(--panel-soft);
+      color: inherit;
+    }
+
+    .num {
+      min-width: 38px;
+      border-radius: 5px;
+      border: 1px solid var(--border);
+      background: #f8faff;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 26px;
+      color: var(--muted);
+    }
+
+    .complete .num {
+      border-color: rgba(20, 125, 82, 0.35);
+      background: rgba(20, 125, 82, 0.08);
+      color: var(--done);
+    }
+
+    .module-title {
+      display: block;
+      font-weight: 700;
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+
+    .module-sub {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .chevron {
+      color: var(--muted);
+      font-size: 18px;
+      transform: rotate(0deg);
+      transition: transform 0.16s ease;
+    }
+
+    .open .chevron {
+      transform: rotate(90deg);
+    }
+
+    .module-body {
+      display: none;
+      border-top: 1px solid var(--border);
+      padding: 14px 16px 16px;
+    }
+
+    .open .module-body {
+      display: block;
+    }
+
+    .items {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 8px;
+    }
+
+    label.item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 38px;
+      border: 1px solid transparent;
+      border-radius: 6px;
+      padding: 8px 10px;
+      color: var(--text);
+      cursor: pointer;
+    }
+
+    label.item:hover {
+      border-color: var(--border);
+      background: #f8faff;
+    }
+
+    label.item.checked {
+      border-color: rgba(20, 125, 82, 0.35);
+      background: rgba(20, 125, 82, 0.08);
+    }
+
+    input[type="checkbox"] {
+      width: 17px;
+      height: 17px;
+      accent-color: var(--done);
+      flex: none;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 72px;
+      margin-top: 12px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 10px;
+      resize: vertical;
+      color: var(--text);
+      font: inherit;
+      line-height: 1.5;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 22px;
+      transform: translateX(-50%);
+      background: var(--text);
+      color: #fff;
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-size: 14px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.16s ease;
+    }
+
+    .toast.show {
+      opacity: 1;
+    }
+
+    @media (max-width: 640px) {
+      .shell {
+        width: min(100% - 20px, 980px);
+        padding-top: 20px;
+      }
+
+      header {
+        grid-template-columns: 1fr;
+      }
+
+      .saved {
+        width: 100%;
+        margin-left: 0;
+      }
+
+      .module-head {
+        grid-template-columns: auto 1fr auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header>
+      <img class="logo" src="../resources/logos/claude-howto-logo.svg" alt="Claude How To">
+      <div>
+        <h1>Claude Code 学习进度</h1>
+        <p class="subtitle">覆盖 10 个模块，进度保存在浏览器 localStorage。需要备份时导出 JSON，需要迁移时再导入。</p>
+      </div>
+    </header>
+
+    <div class="toolbar">
+      <button id="exportBtn" type="button">导出 JSON</button>
+      <label class="import-label" for="importFile">导入 JSON</label>
+      <input id="importFile" type="file" accept=".json,application/json">
+      <button id="resetBtn" type="button">重置进度</button>
+      <span id="savedAt" class="saved"></span>
+    </div>
+
+    <section class="summary" aria-label="学习进度总览">
+      <div class="summary-row">
+        <span>已完成 <strong id="doneCount">0</strong> / <span id="totalCount">0</span> 项</span>
+        <span><strong id="donePct">0%</strong></span>
+      </div>
+      <div class="track" aria-hidden="true">
+        <div id="progressFill" class="fill"></div>
+      </div>
+    </section>
+
+    <main id="modules"></main>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const STORAGE_KEY = "claude-howto-progress-v1";
+
+    const MODULES = [
+      {
+        id: "01-slash-commands",
+        num: "01",
+        title: "Slash Commands",
+        subtitle: "快捷命令，适合先拿到正反馈",
+        items: ["阅读模块 README", "/optimize 代码优化", "/pr PR 准备", "/doc-refactor 文档整理", "安装到 .claude/commands"]
+      },
+      {
+        id: "02-memory",
+        num: "02",
+        title: "Memory 与 CLAUDE.md",
+        subtitle: "让 Claude 长期记住项目规则",
+        items: ["阅读模块 README", "理解项目级 CLAUDE.md", "理解目录级 CLAUDE.md", "区分长期规则和一次性任务", "复制 project-CLAUDE.md"]
+      },
+      {
+        id: "03-skills",
+        num: "03",
+        title: "Skills",
+        subtitle: "把稳定工作流沉淀成可复用能力",
+        items: ["阅读模块 README", "code-review skill", "brand-voice skill", "doc-generator skill", "理解 progressive disclosure"]
+      },
+      {
+        id: "04-subagents",
+        num: "04",
+        title: "Subagents",
+        subtitle: "复杂任务拆分和专业分工",
+        items: ["阅读模块 README", "code-reviewer agent", "test-engineer agent", "debugger agent", "理解 CLI > 项目级 > 用户级优先级"]
+      },
+      {
+        id: "05-mcp",
+        num: "05",
+        title: "MCP",
+        subtitle: "接入外部工具和实时数据",
+        items: ["阅读模块 README", "github-mcp 配置", "database-mcp 配置", "multi-mcp 配置", "确认 token 和网络环境"]
+      },
+      {
+        id: "06-hooks",
+        num: "06",
+        title: "Hooks",
+        subtitle: "事件驱动自动化",
+        items: ["阅读模块 README", "pre-commit.sh", "pre-tool-check.sh", "session-end.sh", "理解 /dev/tty 与 stdin JSON"]
+      },
+      {
+        id: "07-plugins",
+        num: "07",
+        title: "Plugins",
+        subtitle: "把多项能力打包分发",
+        items: ["阅读模块 README", "pr-review plugin", "devops-automation plugin", "documentation plugin", "理解 marketplace update 与 plugin update"]
+      },
+      {
+        id: "08-checkpoints",
+        num: "08",
+        title: "Checkpoints",
+        subtitle: "安全试错和回退",
+        items: ["阅读模块 README", "阅读 checkpoint-examples.md", "试一次 /rewind", "区分代码回退和对话回退"]
+      },
+      {
+        id: "09-advanced-features",
+        num: "09",
+        title: "Advanced Features",
+        subtitle: "权限、计划、后台任务和高级配置",
+        items: ["阅读模块 README", "config-examples.json", "planning-mode-examples", "理解 permission modes", "记住 xhigh 只属于 Opus 4.7"]
+      },
+      {
+        id: "10-cli",
+        num: "10",
+        title: "CLI",
+        subtitle: "自动化和脚本集成的基础",
+        items: ["阅读模块 README", "掌握 -p / -c / -r", "理解 --output-format json", "理解 --json-schema", "试一次 claude --add-dir"]
+      }
+    ];
+
+    function loadState() {
+      try {
+        return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+      } catch {
+        return {};
+      }
+    }
+
+    function saveState(state) {
+      state._savedAt = new Date().toISOString();
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      updateSavedAt(state._savedAt);
+    }
+
+    function updateSavedAt(value) {
+      const node = document.getElementById("savedAt");
+      if (!value) {
+        node.textContent = "";
+        return;
+      }
+      node.textContent = `上次保存：${new Date(value).toLocaleString("zh-CN")}`;
+    }
+
+    function getModuleState(state, id) {
+      state[id] ||= { checked: {}, notes: "" };
+      state[id].checked ||= {};
+      return state[id];
+    }
+
+    function updateProgress(state) {
+      let total = 0;
+      let done = 0;
+      for (const mod of MODULES) {
+        const modState = getModuleState(state, mod.id);
+        total += mod.items.length;
+        done += mod.items.filter((_, index) => modState.checked[index]).length;
+      }
+
+      const pct = total ? Math.round((done / total) * 100) : 0;
+      document.getElementById("doneCount").textContent = done;
+      document.getElementById("totalCount").textContent = total;
+      document.getElementById("donePct").textContent = `${pct}%`;
+      document.getElementById("progressFill").style.width = `${pct}%`;
+    }
+
+    function render() {
+      const state = loadState();
+      const root = document.getElementById("modules");
+      root.textContent = "";
+
+      for (const mod of MODULES) {
+        const modState = getModuleState(state, mod.id);
+        const checkedCount = mod.items.filter((_, index) => modState.checked[index]).length;
+        const complete = checkedCount === mod.items.length;
+
+        const section = document.createElement("section");
+        section.className = `module${complete ? " complete" : ""}`;
+
+        section.innerHTML = `
+          <button class="module-head" type="button" aria-expanded="false">
+            <span class="num">${mod.num}</span>
+            <span>
+              <span class="module-title">${mod.title}</span>
+              <span class="module-sub">${mod.subtitle} · ${checkedCount}/${mod.items.length}</span>
+            </span>
+            <span class="chevron">›</span>
+          </button>
+          <div class="module-body">
+            <div class="items"></div>
+            <textarea data-notes="${mod.id}" placeholder="这个模块的学习备注"></textarea>
+          </div>
+        `;
+
+        const body = section.querySelector(".module-body");
+        const head = section.querySelector(".module-head");
+        const items = section.querySelector(".items");
+        const notes = section.querySelector("textarea");
+        notes.value = modState.notes || "";
+
+        head.addEventListener("click", () => {
+          const open = section.classList.toggle("open");
+          head.setAttribute("aria-expanded", String(open));
+        });
+
+        mod.items.forEach((text, index) => {
+          const label = document.createElement("label");
+          label.className = `item${modState.checked[index] ? " checked" : ""}`;
+
+          const checkbox = document.createElement("input");
+          checkbox.type = "checkbox";
+          checkbox.checked = Boolean(modState.checked[index]);
+          checkbox.addEventListener("change", () => {
+            const current = loadState();
+            const currentModule = getModuleState(current, mod.id);
+            currentModule.checked[index] = checkbox.checked;
+            saveState(current);
+            render();
+          });
+
+          const span = document.createElement("span");
+          span.textContent = text;
+          label.append(checkbox, span);
+          items.appendChild(label);
+        });
+
+        notes.addEventListener("input", () => {
+          const current = loadState();
+          getModuleState(current, mod.id).notes = notes.value;
+          saveState(current);
+        });
+
+        body.hidden = false;
+        root.appendChild(section);
+      }
+
+      updateProgress(state);
+      updateSavedAt(state._savedAt);
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById("toast");
+      toast.textContent = message;
+      toast.classList.add("show");
+      window.setTimeout(() => toast.classList.remove("show"), 2200);
+    }
+
+    document.getElementById("exportBtn").addEventListener("click", () => {
+      const state = loadState();
+      const blob = new Blob([JSON.stringify(state, null, 2)], { type: "application/json" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = `claude-howto-progress-${new Date().toISOString().slice(0, 10)}.json`;
+      link.click();
+      URL.revokeObjectURL(link.href);
+      showToast("已导出进度 JSON");
+    });
+
+    document.getElementById("importFile").addEventListener("change", event => {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = item => {
+        try {
+          const data = JSON.parse(item.target.result);
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+          render();
+          showToast("已导入进度");
+        } catch {
+          showToast("导入失败：JSON 无效");
+        }
+      };
+      reader.readAsText(file);
+      event.target.value = "";
+    });
+
+    document.getElementById("resetBtn").addEventListener("click", () => {
+      if (!confirm("确认重置全部学习进度？")) return;
+      localStorage.removeItem(STORAGE_KEY);
+      render();
+      showToast("进度已重置");
+    });
+
+    render();
+  </script>
+</body>
+</html>

@@ -292,6 +292,7 @@ hooks 通常通过 `stdin` 接收 JSON 输入。
 | `dependency-check.sh` | 依赖清单变更后做漏洞扫描 | 团队依赖治理较严格时 |
 | `notify-team.sh` | 通知团队 | 配合外部消息系统 |
 | `context-tracker.py` | 上下文追踪 | 调试长会话问题 |
+| `session-end.sh` | 会话结束时记录学习模块 | 想跟踪自己学到哪一章时 |
 
 ---
 
@@ -322,6 +323,97 @@ hooks 通常通过 `stdin` 接收 JSON 输入。
 如果你在意 Auto Mode 但又没有 Team plan，优先看：
 
 - [09-advanced-features/README.md](../09-advanced-features/README.md)
+
+---
+
+## SessionEnd 学习进度记录
+
+上游这次新增了一个更贴近学习仓库定位的 hook：`06-hooks/session-end.sh`。
+
+它会在 Claude Code 会话结束时提示你输入本次学习过的模块，例如：
+
+```text
+06,07
+```
+
+然后把记录追加到：
+
+```text
+~/.claude-howto-progress.json
+```
+
+这个路径放在仓库外面，所以你之后 `git pull` 或同步上游时，不会把自己的学习记录覆盖掉。
+
+### 为什么用 `SessionEnd`，不是 `Stop`
+
+- `Stop`：Claude 每次回复结束后都会触发
+- `SessionEnd`：整场会话结束时触发一次
+
+如果目标是写“今天学了哪些模块”的学习日志，`SessionEnd` 更自然。否则每一轮对话后都弹一次输入，体验会很烦。
+
+### 为什么脚本里要用 `/dev/tty`
+
+hook 的 `stdin` 默认已经被 Claude Code 用来传 JSON payload。
+如果脚本还想和用户交互，`read` 就不能直接读 `stdin`，而要显式从 `/dev/tty` 读：
+
+```bash
+read -r INPUT </dev/tty
+```
+
+这也是写交互式 hooks 时很容易踩的坑。
+
+### 安装方式
+
+```bash
+mkdir -p .claude/hooks
+cp 06-hooks/session-end.sh .claude/hooks/
+chmod +x .claude/hooks/session-end.sh
+```
+
+然后在 `.claude/settings.json` 里加入：
+
+```json
+{
+  "hooks": {
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$CLAUDE_PROJECT_DIR/.claude/hooks/session-end.sh\""
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+输出示例：
+
+```json
+{
+  "sessions": [
+    {
+      "date": "2026-04-28",
+      "time": "09:18",
+      "modules": ["06-hooks", "07-plugins"],
+      "notes": "试了 SessionEnd hook，并理解了 /dev/tty 的用途"
+    }
+  ]
+}
+```
+
+### 配套的本地进度页面
+
+如果你更喜欢可视化勾选，可以直接打开：
+
+```bash
+open local-progress/index.html
+```
+
+这个页面覆盖 10 个模块，进度保存在浏览器 `localStorage`，不会写进仓库。
+导出的 JSON 会被 `.gitignore` 忽略，适合自己备份，不适合提交。
 
 ---
 

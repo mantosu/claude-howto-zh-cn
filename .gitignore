@@ -51,6 +51,9 @@ yarn-error.log*
 !.claude/skills/lesson-quiz/
 blog-posts/
 
+# 本地学习进度：HTML 页面随仓库分发，导出的 JSON 数据保留在本机
+local-progress/*.json
+
 # EPUB files in root directory
 /*.epub
 

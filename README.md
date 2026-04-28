@@ -20,12 +20,12 @@
 
 ## 最近同步
 
-- **最近同步日期**：2026-04-26
-- **本轮参考范围**：`eff5bd2` -> `a7a0ea2`
+- **最近同步日期**：2026-04-28
+- **本轮参考范围**：`a7a0ea2` -> `3221229`
 - **本次同步内容**：
-  - 同步上游 `v2.1.119` 后续文档修正：skills 加载流程图更清楚、plugins 的 marketplace / plugin update 区分、advanced features 的 effort level 支持范围纠正
-  - 补充自动更新相关环境变量说明：`DISABLE_AUTOUPDATER`、`FORCE_AUTOUPDATE_PLUGINS`
-  - 明确 `xhigh` 只属于 Opus 4.7，避免中文文档继续把支持范围写宽
+  - 同步上游新增的 `SessionEnd` 学习进度 hook，并本土化为 `06-hooks/session-end.sh`
+  - 新增本地可打开的学习进度页面：`local-progress/index.html`
+  - 修正 agent 优先级、hooks 类型题库、Opus / Sonnet 模型示例等容易误导的细节
 
 ---
 
@@ -140,6 +140,7 @@
 - `05-mcp/*.json`
 - `06-hooks/*.sh`
 - `07-plugins/*`
+- `local-progress/index.html`
 
 ### 4. 每改一处示例都先确认兼容性
 

@@ -2,6 +2,26 @@
 
 > 本文件保留上游版本信息的时间顺序，但用中文补充阅读说明，方便中文用户快速判断“这个仓库最近同步了什么”。
 
+## 中文版同步 — 2026-04-28
+
+### 上游审阅
+
+- 核对上游范围：`a7a0ea2` → `3221229`
+- 上游这轮重点：
+  - 新增 `SessionEnd` 学习进度记录 hook
+  - 新增本地浏览器进度面板 `local-progress/index.html`
+  - 修正 agent 优先级为 CLI → Project → User
+  - 修正 lesson quiz 里几个过时题目
+  - 配置示例继续更新到 Opus 4.7 / Sonnet 4.6
+
+### 中文 fork 处理
+
+- 新增中文化的 `06-hooks/session-end.sh`
+- 新增中文化的 `local-progress/index.html`
+- 更新 hooks、subagents、CLI、advanced features 和 lesson quiz 相关说明
+- 继续保留中文根目录主线，不采用上游英文 README 或多语言目录结构
+- 保留本仓库自有 `RELEASE_NOTES.md`，不跟随上游删除该文件
+
 ## 中文版同步 — 2026-04-22
 
 ### 上游审阅

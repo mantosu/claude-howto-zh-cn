@@ -5,7 +5,7 @@
 - 上游仓库：[`luongnv89/claude-howto`](https://github.com/luongnv89/claude-howto)
 - 上游分支：`main`
 - 本地化基线 commit：`0ca8c37c81918458e063739425c4740ca92c2db2`
-- 最近检查到的上游 commit：`a7a0ea2eb4104a54b33d37ea2a8d9b06b6b6e3a2`
+- 最近检查到的上游 commit：`32212292df53fe97db8a9d8e1327962e55055464`
 - 上游许可证：[MIT License](LICENSE)
 
 ## 本仓库性质
@@ -61,6 +61,21 @@ uv run python scripts/validate_localization.py
    - 哪些内容暂时未同步
 
 ## 最近一次同步记录
+
+### 上游同步 — 2026-04-28
+
+- Reviewed upstream range: `a7a0ea2` → `3221229`
+- 重点上游变化：
+  - 新增 `06-hooks/session-end.sh`，用于在 `SessionEnd` 时记录学习进度
+  - 新增 `local-progress/index.html`，提供浏览器本地学习进度面板
+  - 修正 agent 定义优先级为 CLI → Project → User
+  - 修正 lesson quiz 题库里的 skill metadata 预算、agent 优先级和 hooks 类型口径
+  - 配置示例继续收敛到 Opus 4.7 / Sonnet 4.6
+- Chinese fork actions:
+  - 将新增 hook 和本地进度页面改写为中文用户可直接理解的版本
+  - 保留 `SessionEnd`、`CLAUDE_PROJECT_DIR`、`localStorage`、CLI flags 等可执行标识
+  - 更新中文 hooks、subagents、CLI、advanced features 与题库说明
+  - 保留本仓库自有 `RELEASE_NOTES.md`，不照搬上游删除动作
 
 ### 上游同步 — 2026-04-26
 

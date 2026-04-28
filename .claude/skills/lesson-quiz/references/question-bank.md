@@ -170,7 +170,7 @@
 - **Question**: progressive disclosure 的意义是什么？
 - **Options**: A) 一开始把所有内容全塞进上下文 | B) 按需加载 metadata、instructions 和 resources | C) 让 skill 只能手动触发 | D) 让文件更短
 - **Correct**: B
-- **Explanation**: skills 的优势之一是按需加载，避免上下文被一开始就塞满。
+- **Explanation**: skills 的优势之一是按需加载，metadata 默认预算约占上下文窗口 1%，fallback 约 8,000 字符；真正命中后再加载 `SKILL.md` 和资源文件。
 - **Review**: progressive disclosure 是什么意思
 
 ### Q4
@@ -227,11 +227,11 @@
 
 ### Q2
 - **Category**: practical
-- **Question**: 项目级 subagents 通常放在哪？
-- **Options**: A) `.claude/agents/` | B) `.claude/skills/` | C) `.mcp.json` | D) `docs/agents/`
+- **Question**: 同名 agent 同时出现在 CLI、项目级和用户级时，优先级顺序是什么？
+- **Options**: A) CLI > 项目级 > 用户级 | B) CLI > 用户级 > 项目级 | C) 用户级 > 项目级 > CLI | D) 三者没有优先级
 - **Correct**: A
-- **Explanation**: 项目级 agents 目录是 `.claude/agents/`。
-- **Review**: 文件放哪里
+- **Explanation**: 新版口径是 `--agents` 临时定义最高，其次是 `.claude/agents/` 项目级，最后才是 `~/.claude/agents/` 用户级。
+- **Review**: agent 定义优先级
 
 ### Q3
 - **Category**: conceptual
@@ -387,11 +387,11 @@
 
 ### Q5
 - **Category**: conceptual
-- **Question**: hooks 支持哪四种类型？
-- **Options**: A) `command`、`http`、`prompt`、`agent` | B) `shell`、`json`、`yaml`、`plugin` | C) `pre`、`post`、`read`、`write` | D) `sync`、`async`、`web`、`app`
+- **Question**: 截至 Claude Code v2.1.119，hooks 支持哪五种类型？
+- **Options**: A) `command`、`http`、`mcp_tool`、`prompt`、`agent` | B) `shell`、`json`、`yaml`、`plugin`、`web` | C) `pre`、`post`、`read`、`write`、`sync` | D) `sync`、`async`、`web`、`app`、`memory`
 - **Correct**: A
-- **Explanation**: 这是 hooks 的四类主要执行方式。
-- **Review**: 四种 hook 类型
+- **Explanation**: 新版 hooks 已把 `mcp_tool` 明确列为 hook 类型，所以不能继续按“四种类型”的旧口径记。
+- **Review**: 五种 hook 类型
 
 ### Q6
 - **Category**: practical

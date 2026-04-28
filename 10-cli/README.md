@@ -250,6 +250,25 @@ claude plugin install my-plugin
 
 ---
 
+## `--agents` 与 agent 优先级
+
+CLI 也可以在当前 session 临时定义 agents：
+
+```bash
+claude --agents "$(cat agents.json)" "review the auth module"
+```
+
+当同名 agent 同时出现在多个位置时，优先级要按新版口径记：
+
+1. `--agents`：当前 session 临时定义
+2. `.claude/agents/`：当前项目
+3. `~/.claude/agents/`：用户级默认配置
+
+所以 `--agents` 会覆盖项目级和用户级；项目级会覆盖用户级。
+完整背景可以回看 [Subagents 指南](../04-subagents/README.md#agent-定义优先级)。
+
+---
+
 ## session 管理
 
 当你开始做稍复杂的工作后，session 管理会非常重要。
