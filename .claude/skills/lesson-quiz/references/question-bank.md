@@ -124,9 +124,9 @@
 ### Q6
 - **Category**: practical
 - **Question**: 对话中快速写入一条 memory 的常见方式是什么？
-- **Options**: A) `/remember now` | B) 以 `#` 开头写一条规则 | C) `@memory` | D) `/save-context`
-- **Correct**: B
-- **Explanation**: `# your rule` 这种形式是常见的快速写入方式。
+- **Options**: A) 使用 `/memory` 打开编辑器，或直接用自然语言让 Claude 记住 | B) 以 `#` 开头写一条规则 | C) `@memory` | D) `/save-context`
+- **Correct**: A
+- **Explanation**: 推荐方式是用 `/memory` 编辑 memory 文件，或直接说“记住：……”。`# your rule` 这种前缀写法已经停用，不应再作为新教程推荐。
 - **Review**: 高价值命令
 
 ### Q7
@@ -591,11 +591,11 @@
 
 ### Q5
 - **Category**: conceptual
-- **Question**: 为什么 background tasks 有价值？
-- **Options**: A) 让长任务后台跑，不堵当前对话 | B) 它会自动修所有 bug | C) 它只给企业版用 | D) 它会替代 hooks
+- **Question**: `ultrathink` 在 extended thinking 里更准确的作用是什么？
+- **Options**: A) 为当前这一次回答触发更深推理，但不永久改变 session effort | B) 永久把当前 session 改成最高 effort | C) 只在 Opus 4.6 可用 | D) 等价于打开 verbose transcript
 - **Correct**: A
-- **Explanation**: background tasks 的价值是提升并行工作体验。
-- **Review**: background tasks 和 scheduled tasks
+- **Explanation**: `ultrathink` 更像给这一轮 prompt 加一个深度推理指令；如果要调整 session 级别思考强度，应使用 `/effort`。
+- **Review**: extended thinking
 
 ### Q6
 - **Category**: practical

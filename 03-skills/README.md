@@ -66,6 +66,9 @@ skill-name/
 - 即使装了很多 skills，**skill 名称会保留**，description 则会被裁短
 - 如果你希望某个 skill 只在某些路径下自动触发，可以在 frontmatter 里加 `paths`
 - 写 description 时要把“最关键的使用场景”放前面，否则容易在预算裁剪时丢失重点
+- `effort` 可用值需要看模型能力；新版里可写 `low` / `medium` / `high` / `xhigh` / `max`，其中 `xhigh` 主要对应 Opus 4.7
+- skill 内容里可以使用 `${CLAUDE_EFFORT}` 获取当前 effort level，适合根据思考强度分支执行不同流程
+- `/skills` 交互菜单支持直接输入过滤，装了很多 skills 时更容易定位
 
 ---
 
@@ -144,6 +147,7 @@ cp -r 03-skills/code-review .claude/skills/
 - `effort`
 - `shell`
 - `paths`
+- `${CLAUDE_EFFORT}`
 
 同时，skill 名称本身也不要擅自中文化改名。
 

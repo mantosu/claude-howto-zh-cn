@@ -5,7 +5,7 @@
 - 上游仓库：[`luongnv89/claude-howto`](https://github.com/luongnv89/claude-howto)
 - 上游分支：`main`
 - 本地化基线 commit：`0ca8c37c81918458e063739425c4740ca92c2db2`
-- 最近检查到的上游 commit：`f393805fb8b377483bcbb10aa47caf7f1942974b`
+- 最近检查到的上游 commit：`9701bb74c20b2bd5959f025a7b6f04e5d86aab45`
 - 上游许可证：[MIT License](LICENSE)
 
 ## 本仓库性质
@@ -61,6 +61,21 @@ uv run python scripts/validate_localization.py
    - 哪些内容暂时未同步
 
 ## 最近一次同步记录
+
+### 上游同步 — 2026-05-03
+
+- Reviewed upstream range: `f393805` → `9701bb7`
+- 重点上游变化：
+  - Claude Code 教程覆盖更新到 `v2.1.126`
+  - 新增或补充 `claude project purge`、`claude plugin prune`、headless `claude ultrareview`、MCP `alwaysLoad`、hooks `updatedToolOutput`
+  - 修正 memory 题库中已停用的 `# your rule` 快捷写法
+  - 修正 extended thinking 题库和示例，避免把 `/think` 当成有效命令，并明确 `ultrathink` 与 `/effort` 的区别
+  - 上游 `uk/`、`vi/` 本地化目录同步了 advanced features 说明
+- Chinese fork actions:
+  - 将会影响中文用户复制使用的命令、配置和题库说明同步到根目录中文主线
+  - 保留 `project purge`、`plugin prune`、`alwaysLoad`、`updatedToolOutput`、`ultrathink`、`/effort` 等可执行标识原文
+  - 不引入上游其他语言目录改动，继续维护 `lhfer/claude-howto-zh-cn` 的中文默认入口
+  - 更新 `README.md`、`UPSTREAM.md` 和 `CHANGELOG.md` 的最近同步记录
 
 ### 上游同步 — 2026-05-01
 

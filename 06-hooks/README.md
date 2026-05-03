@@ -259,8 +259,32 @@ hooks 通常通过 `stdin` 接收 JSON 输入。
 - `ask`
 - `updatedInput`
 - `additionalContext`
+- `hookSpecificOutput.updatedToolOutput`
 
 如果你只是在做简单 shell 检查，先把“成功返回 0，失败返回非 0”跑通就够了。
+
+### `updatedToolOutput` 现在不只限 MCP 工具
+
+上游在 `v2.1.121+` 扩大了 `hookSpecificOutput.updatedToolOutput` 的适用范围：
+它现在对 `Bash`、`Edit`、`Read` 等普通工具也生效，不再只是 MCP tool。
+
+这意味着 `PostToolUse` hook 可以在 Claude 看到工具输出前先做一层处理，例如：
+
+- 去掉命令输出里的 ANSI 颜色码
+- 过滤噪音日志
+- 脱敏 secrets
+- 把复杂 diff 改成更容易读的摘要
+
+返回结构保持 key 原样，不要翻译：
+
+```json
+{
+  "hookSpecificOutput": {
+    "hookEventName": "PostToolUse",
+    "updatedToolOutput": "<plain-text output>"
+  }
+}
+```
 
 ### 这轮上游同步后要特别注意什么
 

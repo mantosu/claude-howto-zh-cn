@@ -2,6 +2,26 @@
 
 > 本文件保留上游版本信息的时间顺序，但用中文补充阅读说明，方便中文用户快速判断“这个仓库最近同步了什么”。
 
+## 中文版同步 — 2026-05-03
+
+### 上游审阅
+
+- 核对上游范围：`f393805` → `9701bb7`
+- 上游这轮重点：
+  - 同步 Claude Code `v2.1.126`
+  - 新增 `claude project purge`、`claude plugin prune`、headless `claude ultrareview`
+  - 补充 MCP `alwaysLoad`、hooks `updatedToolOutput` 全工具适用范围、`${CLAUDE_EFFORT}` 等说明
+  - 修正 memory 题库中已停用的 `# your rule` 写法
+  - 修正 extended thinking 相关示例与题目，避免误写 `/think`
+
+### 中文 fork 处理
+
+- 将新增命令和配置说明改写为中文用户可理解、可复制的版本
+- 保留所有 CLI flags、JSON key、环境变量和命令名原样
+- 更新 lesson quiz 的出题规则：每轮即时反馈，并要求打乱选项顺序
+- 不引入上游其他语言目录变化，继续保持根目录中文默认入口
+- 更新 `README.md` 和 `UPSTREAM.md` 的最近同步记录
+
 ## 中文版同步 — 2026-05-01
 
 ### 上游审阅

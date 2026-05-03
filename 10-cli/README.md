@@ -24,6 +24,9 @@ Claude Code 的 CLI 是最核心的使用入口。
 | `claude plugin` | 管理 plugins |
 | `claude remote-control` | 启动远程控制 |
 | `claude auth status` | 查看登录状态 |
+| `claude project purge [path]` | 清理某个项目的本地 Claude Code 状态，先用 `--dry-run` 预览 |
+| `claude plugin prune` | 清理无主的自动安装 plugin 依赖 |
+| `claude ultrareview [target]` | 在无头模式里运行 `/ultrareview`，适合 CI / PR gate |
 
 如果你是新手，先熟悉 `claude`、`claude -p`、`claude -c`、`claude -r` 就已经很有价值。
 
@@ -147,6 +150,8 @@ claude --append-system-prompt "Always explain tradeoffs" "review this plan"
 - Windows 侧正在逐步拿到更专门的 PowerShell tool
 - 主题里新增了更贴近终端外观的 Auto 模式
 - 只读型 Bash / Glob 调用的权限提示比以前更安静
+- `ANTHROPIC_BASE_URL` 指向兼容网关时，`/model` 会从网关 `/v1/models` 拉模型列表
+- `claude auth login` 在浏览器 callback 打不回 localhost 时，可以把 OAuth code 粘回终端继续登录
 
 ---
 
@@ -163,6 +168,32 @@ claude --tmux
 - 想为更复杂的多终端协作留出界面空间
 
 如果你还处在基础阶段，不必先学它；但当你开始并行做多条任务线时，它会很有用。
+
+---
+
+## 项目状态清理：`claude project purge`
+
+`claude project purge` 用来删除某个项目在本机留下的 Claude Code 状态，例如 transcripts、tasks、debug logs、file-edit history、prompt history，以及 `~/.claude.json` 中的项目记录。
+
+先预览，不落盘删除：
+
+```bash
+claude project purge ~/work/repo --dry-run
+```
+
+确认后清理指定项目：
+
+```bash
+claude project purge ~/work/repo --yes
+```
+
+逐个确认所有项目：
+
+```bash
+claude project purge --all --interactive
+```
+
+这个命令清的是 Claude Code 本地状态，不是你的 Git 仓库源码。即便如此，也建议先跑 `--dry-run` 看清楚会删什么。
 
 ---
 
@@ -235,6 +266,8 @@ claude --add-dir ../frontend ../backend ../shared "find all API endpoints"
 - `claude mcp`
 - `claude mcp serve`
 - `claude plugin`
+- `claude plugin prune`
+- `claude plugin uninstall <name> --prune`
 
 你实际使用中也经常会碰到它们。
 
@@ -244,6 +277,7 @@ claude --add-dir ../frontend ../backend ../shared "find all API endpoints"
 claude mcp
 claude mcp serve
 claude plugin install my-plugin
+claude plugin prune
 ```
 
 如果你要做自动化、集成第三方系统或团队分发，这些命令迟早会用到。
@@ -307,6 +341,30 @@ claude --agents "$(cat agents.json)" "review the auth module"
 
 所以如果你真想把 Claude Code 用深，CLI 不是可选项，而是核心能力。
 
+### 无头 `ultrareview`
+
+`claude ultrareview [target]` 可以把 `/ultrareview` 放到脚本或 CI 里运行。
+
+```bash
+claude ultrareview 1234 --json > review.json
+```
+
+它会把审查结果输出到 stdout；成功退出码为 `0`，失败或发现阻断性问题时退出码为 `1`。
+如果默认 30 分钟不够，可以加 `--timeout <minutes>`。
+
+---
+
+## 新增环境变量
+
+这轮 CLI 相关更新里，有两个环境变量对自动化和云厂商部署比较有用：
+
+| 环境变量 | 用途 |
+|----------|------|
+| `ANTHROPIC_BEDROCK_SERVICE_TIER` | 在 Bedrock 上选择服务档位：`default`、`flex` 或 `priority` |
+| `AI_AGENT` | Claude Code 启动子进程时自动设置，方便外部 CLI（例如 `gh`）识别调用来源 |
+
+这些名字属于可执行标识，不要翻译。
+
 ---
 
 ## 哪些内容绝对不能翻
@@ -343,6 +401,9 @@ Windows 用户建议尽早确认自己使用的是：
 - WSL
 
 这会直接影响路径、命令行为和脚本兼容性。
+
+新版 Claude Code 不再强制依赖 Git Bash；缺少 Git Bash 时可以走 PowerShell。
+如果开启了 PowerShell tool，PowerShell 会成为主 shell，PowerShell 7 的检测也更完整。
 
 ### 3. 自动化不要一开始就开太猛
 

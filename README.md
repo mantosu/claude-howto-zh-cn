@@ -20,12 +20,13 @@
 
 ## 最近同步
 
-- **最近同步日期**：2026-05-01
-- **本轮参考范围**：`3221229` -> `f393805`
+- **最近同步日期**：2026-05-03
+- **本轮参考范围**：`f393805` -> `9701bb7`
 - **本次同步内容**：
-  - 审阅上游新增的完整 `ja/` 日文翻译目录，确认不引入本中文 fork 的根目录主线
-  - 同步记录上游去除英文 README 硬编码 star / fork 数字的维护方向；本中文首页原本未使用这些指标，无需正文改动
-  - 保持中文默认入口、中文学习路径和现有可执行示例不变
+  - 同步 Claude Code `v2.1.126` 相关教程变化，补充 `project purge`、`plugin prune`、headless `ultrareview`、MCP `alwaysLoad`、hooks `updatedToolOutput` 等说明
+  - 修正 memory 题库中已停用的 `# your rule` 快捷写法，改为 `/memory` 或自然语言记忆
+  - 修正 extended thinking 相关表述，避免把 `/think` 当成有效命令；保留 `ultrathink`、`/effort` 等可执行标识
+  - 不引入上游 `uk/`、`vi/` 等多语言目录改动，继续保持根目录中文主线
 
 ---
 

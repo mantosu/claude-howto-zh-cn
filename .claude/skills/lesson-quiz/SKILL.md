@@ -59,6 +59,9 @@ description: Claude Code 单模块互动测验。Use when asked to "quiz me on h
 - 每轮 2 题，共 4 轮
 - 混合概念题和实践题
 - 每题使用 AskUserQuestion，提供 3-4 个选项
+- 每轮用户答完后，立即给出本轮逐题反馈：是否答对；如果答错，给出正确答案和简短解释
+- 每题展示前必须随机打乱选项顺序，不要照搬题库里的 A/B/C/D 顺序，也不要固定把正确答案放在第一项
+- 打乱后要记录正确答案对应的新位置，最终评分按打乱后的真实答案判定
 
 每题必须包含这些信息：
 
@@ -69,7 +72,7 @@ description: Claude Code 单模块互动测验。Use when asked to "quiz me on h
 - `explanation`
 - `review`
 
-记录用户答案，最后统一评分。
+记录用户答案；每轮反馈不替代最终结果，所有 4 轮结束后仍要统一评分。
 
 ---
 

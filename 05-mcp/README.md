@@ -98,6 +98,28 @@ cp 05-mcp/multi-mcp.json .mcp.json
 
 ---
 
+## `alwaysLoad`：让特定 MCP server 跳过工具搜索
+
+新版 Claude Code 支持在单个 MCP server 上配置 `alwaysLoad: true`。
+意思是：这个 server 的工具每轮都直接加载，不再等 tool search 按需找出来。
+
+```json
+{
+  "mcpServers": {
+    "always-on-tool": {
+      "command": "node",
+      "args": ["./tools/always.js"],
+      "alwaysLoad": true
+    }
+  }
+}
+```
+
+这适合非常高频、几乎每次都会用到的工具。
+但不要滥用，因为常驻工具会占上下文预算，装多了反而会挤掉更相关的动态工具。
+
+---
+
 ## 哪些内容不能翻
 
 MCP 配置是高风险文件，以下内容默认不要翻：
@@ -107,6 +129,7 @@ MCP 配置是高风险文件，以下内容默认不要翻：
 - `command`
 - `args`
 - `env`
+- `alwaysLoad`
 - 环境变量名，例如 `GITHUB_TOKEN`
 
 正文解释可以中文化，但 JSON key 和 server 名称不要改。
