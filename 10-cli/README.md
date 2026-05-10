@@ -207,6 +207,11 @@ claude project purge --all --interactive
 - `--disallowedTools`
 - `--tools`
 
+这里还有一个这轮修掉的老坑值得知道：
+
+- 从 `v2.1.132+` 起，`--permission-mode` 在 `--continue` / `--resume` 场景下也会真正生效
+- 旧版本里你即使恢复 session 时重新带了 `--permission-mode plan`，也可能悄悄降回别的模式
+
 ### 实用例子
 
 ```bash
@@ -365,6 +370,9 @@ claude ultrareview 1234 --json > review.json
 | `CLAUDE_CODE_FORCE_SYNC_OUTPUT` | 在终端能力自动检测失误时强制同步输出，例如 Emacs `eat` |
 | `CLAUDE_CODE_PACKAGE_MANAGER_AUTO_UPDATE` | 为 Homebrew / WinGet 安装启用后台升级 |
 | `CLAUDE_CODE_ENABLE_GATEWAY_MODEL_DISCOVERY` | 在设置了 `ANTHROPIC_BASE_URL` 时，显式开启 `/v1/models` 网关发现 |
+| `CLAUDE_CODE_DISABLE_ALTERNATE_SCREEN` | 设为 `1` 后，停留在普通终端滚动历史里，而不是 fullscreen alternate-screen 渲染 |
+| `CLAUDE_CODE_SESSION_ID` | 每个 Bash tool 子进程都会带上这个 session UUID，可用来和 hooks / telemetry 对日志 |
+| `CLAUDE_CODE_ENABLE_FEEDBACK_SURVEY_FOR_OTEL` | 在 OTEL 环境下重新打开 Anthropic 的会话质量问卷 |
 
 这些名字属于可执行标识，不要翻译。
 

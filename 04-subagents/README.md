@@ -180,6 +180,18 @@ cp 04-subagents/code-reviewer.md .claude/agents/
 
 ## 如何决定要不要拆成 subagents
 
+### 这轮上游要补的一点：subagent 也会发现同一套 skills
+
+从 `v2.1.133+` 开始，subagent 不再只看自己内嵌的那一小组能力。
+它会像主 session 一样，通过 Skill tool 发现：
+
+- 项目级 skills
+- 用户级 skills
+- plugin 提供的 skills
+
+这对“skill + subagent” 组合工作流很重要。
+如果你以前感觉主 Claude 会用某个 skill，但一委派给 subagent 就像“忘了这项能力”，新版应该按统一目录发现逻辑来理解。
+
 ### 推荐拆
 
 - 任务本身可以天然分工

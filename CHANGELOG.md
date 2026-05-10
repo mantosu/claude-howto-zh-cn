@@ -2,6 +2,26 @@
 
 > 本文件保留上游版本信息的时间顺序，但用中文补充阅读说明，方便中文用户快速判断“这个仓库最近同步了什么”。
 
+## 中文版同步 — 2026-05-10
+
+### 上游审阅
+
+- 核对上游范围：`d4b5cf5` → `b3571e8`
+- 上游这轮重点：
+  - 同步 Claude Code `v2.1.138`
+  - hooks 事件数更新到 29，并新增 `Setup` 事件、`effort.level`
+  - 新增 `worktree.baseRef`、`autoMode.hard_deny`、plan mode 无条件阻止写入
+  - MCP 修复 `/clear` 后 server 丢失与 OAuth refresh token 并发刷新
+  - plugin 支持空格调用，subagent 共享主 skill catalog，CLI 增补新的环境变量与 resume 权限模式修复
+
+### 中文 fork 处理
+
+- 将会影响自动化、安全边界和命令行为的变化改写成适合中文用户理解的说明
+- 保留所有 CLI flags、JSON key、环境变量和命令名原样
+- 同步 hooks 事件数、目录计数和版本脚注，避免中文仓库继续引用旧统计
+- 保持根目录中文默认入口，不引入上游英文 README 或其他语言目录改动
+- 更新 `README.md` 和 `UPSTREAM.md` 的最近同步记录
+
 ## 中文版同步 — 2026-05-07
 
 ### 上游审阅

@@ -20,12 +20,12 @@
 
 ## 最近同步
 
-- **最近同步日期**：2026-05-07
-- **本轮参考范围**：`9701bb7` -> `d4b5cf5`
+- **最近同步日期**：2026-05-10
+- **本轮参考范围**：`d4b5cf5` -> `b3571e8`
 - **本次同步内容**：
-  - 同步 Claude Code `v2.1.131` 相关教程变化，补充 `skillOverrides`、`/mcp` 工具数显示、plugin `.zip` / `--plugin-url`、`disableRemoteControl` 等说明
-  - 修正 gateway model discovery 口径：现在要显式设置 `CLAUDE_CODE_ENABLE_GATEWAY_MODEL_DISCOVERY=1`，不再只靠 `ANTHROPIC_BASE_URL`
-  - 补充 `/context` UI-only 可视化、`Ctrl+R` 搜索范围变化、`--channels` 支持 API key、以及新的 CLI 环境变量说明
+  - 同步 Claude Code `v2.1.138` 相关教程变化，补充 hooks `Setup` 事件、`worktree.baseRef`、`autoMode.hard_deny`、plan mode 无条件阻止写入等说明
+  - 补充 MCP `/clear` 后 server 持久化、subagent 共享 skill catalog、plugin 空格调用与 `skills/` 合并发现
+  - 更新若干 CLI / 环境变量说明，包括 `CLAUDE_CODE_DISABLE_ALTERNATE_SCREEN`、`CLAUDE_CODE_SESSION_ID`、OTEL 问卷开关，以及 `--permission-mode` 在 resume 时生效
   - 继续保持中文默认入口，不引入上游英文根 README 或其他语言目录改动
 
 ---

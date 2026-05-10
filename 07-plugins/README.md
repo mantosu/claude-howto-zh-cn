@@ -328,6 +328,16 @@ manifest 顶层可以加一个 `monitors` 字段，例如：
 - `hostPattern`
 - `pathPattern`
 
+### plugin command 现在支持空格写法
+
+从 `v2.1.136+` 开始，plugin slash command 不只认冒号写法：
+
+- `/myplugin:review`：规范写法，脚本和文档里仍然推荐优先用这个
+- `/myplugin review`：现在也能解析到同一个命令
+
+另外，上游这轮还修了一个很容易踩的点：
+如果你在 `plugin.json` 里列出一部分 `skills`，默认 `skills/` 目录里的其他 skills 不会再被“遮住”，而是会合并发现。
+
 这意味着团队可以更细粒度地限制：
 
 - 哪些 marketplace 根本不能装
