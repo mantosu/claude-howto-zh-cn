@@ -20,13 +20,12 @@
 
 ## 最近同步
 
-- **最近同步日期**：2026-05-10
-- **本轮参考范围**：`d4b5cf5` -> `b3571e8`
+- **最近同步日期**：2026-05-12
+- **本轮参考范围**：`b3571e8` -> `553a319`
 - **本次同步内容**：
-  - 同步 Claude Code `v2.1.138` 相关教程变化，补充 hooks `Setup` 事件、`worktree.baseRef`、`autoMode.hard_deny`、plan mode 无条件阻止写入等说明
-  - 补充 MCP `/clear` 后 server 持久化、subagent 共享 skill catalog、plugin 空格调用与 `skills/` 合并发现
-  - 更新若干 CLI / 环境变量说明，包括 `CLAUDE_CODE_DISABLE_ALTERNATE_SCREEN`、`CLAUDE_CODE_SESSION_ID`、OTEL 问卷开关，以及 `--permission-mode` 在 resume 时生效
-  - 继续保持中文默认入口，不引入上游英文根 README 或其他语言目录改动
+  - 同步上游新增的 Markdown 渲染校验脚本与测试，用来拦截 inline code 反引号、表格 `|` 转义、`$ARGUMENTS` 外泄和 fence 不匹配等渲染问题
+  - 将渲染校验接入本仓库 `.pre-commit-config.yaml`，把文档渲染错误前移到提交前发现
+  - 保持中文默认入口不变，不引入上游其他语言目录改动，也不把根目录中文主线替换回英文 README
 
 ---
 

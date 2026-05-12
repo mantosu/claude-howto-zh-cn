@@ -52,3 +52,12 @@ repos:
         args: [--maxkb=1000]
       - id: check-merge-conflict
         name: check-merge-conflict
+
+  - repo: local
+    hooks:
+      - id: markdown-rendering
+        name: markdown-rendering
+        language: system
+        entry: python scripts/check_markdown_rendering.py
+        pass_filenames: false
+        types: [markdown]

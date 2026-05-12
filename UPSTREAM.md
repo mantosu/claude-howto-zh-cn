@@ -5,7 +5,7 @@
 - 上游仓库：[`luongnv89/claude-howto`](https://github.com/luongnv89/claude-howto)
 - 上游分支：`main`
 - 本地化基线 commit：`0ca8c37c81918458e063739425c4740ca92c2db2`
-- 最近检查到的上游 commit：`b3571e8def64149e21f7440efb9ac844bcb44d2a`
+- 最近检查到的上游 commit：`553a31993417ecbeacccb55a2564d9d54130ba11`
 - 上游许可证：[MIT License](LICENSE)
 
 ## 本仓库性质
@@ -61,6 +61,20 @@ uv run python scripts/validate_localization.py
    - 哪些内容暂时未同步
 
 ## 最近一次同步记录
+
+### 上游同步 — 2026-05-12
+
+- Reviewed upstream range: `b3571e8` → `553a319`
+- 重点上游变化：
+  - 新增 `scripts/check_markdown_rendering.py`，用于校验 Markdown 渲染正确性
+  - 新增 `scripts/tests/test_check_markdown_rendering.py`
+  - `.pre-commit-config.yaml` 增加 `markdown-rendering` 钩子
+  - 文档侧修正 `` !`command` `` 相关渲染转义，避免 inline code 被错误解析
+- Chinese fork actions:
+  - 将 Markdown 渲染校验脚本、测试和 pre-commit 钩子同步到中文仓库
+  - 保持中文文档主线不变，不引入上游 `ja/`、`vi/`、`zh/` 目录里的非根主线改动
+  - 通过实际运行新校验器，确认当前中文 README 集合渲染检查通过
+  - 更新 `README.md`、`UPSTREAM.md` 和 `CHANGELOG.md` 的最近同步记录
 
 ### 上游同步 — 2026-05-10
 

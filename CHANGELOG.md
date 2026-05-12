@@ -2,6 +2,24 @@
 
 > 本文件保留上游版本信息的时间顺序，但用中文补充阅读说明，方便中文用户快速判断“这个仓库最近同步了什么”。
 
+## 中文版同步 — 2026-05-12
+
+### 上游审阅
+
+- 核对上游范围：`b3571e8` → `553a319`
+- 上游这轮重点：
+  - 新增 `scripts/check_markdown_rendering.py`
+  - 新增 `scripts/tests/test_check_markdown_rendering.py`
+  - `.pre-commit-config.yaml` 增加 `markdown-rendering` 钩子
+  - 修正文档里 `` !`command` `` 相关 Markdown 渲染转义
+
+### 中文 fork 处理
+
+- 将新的 Markdown 渲染校验脚本、测试和 pre-commit 配置同步进中文仓库
+- 实际运行渲染校验器，确认当前中文 README 集合通过检查
+- 保持根目录中文默认入口，不引入上游其他语言目录改动
+- 更新 `README.md` 和 `UPSTREAM.md` 的最近同步记录
+
 ## 中文版同步 — 2026-05-10
 
 ### 上游审阅
