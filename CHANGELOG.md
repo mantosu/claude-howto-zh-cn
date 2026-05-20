@@ -2,6 +2,26 @@
 
 > 本文件保留上游版本信息的时间顺序，但用中文补充阅读说明，方便中文用户快速判断“这个仓库最近同步了什么”。
 
+## 中文版同步 — 2026-05-20
+
+### 上游审阅
+
+- 核对上游范围：`3557d79` → `30d5ad5`
+- 上游这轮重点：
+  - 同步 Claude Code `v2.1.143`
+  - 新增 `/goal`、`/scroll-speed`、Agent View、`claude plugin details`
+  - hooks 增加 `args`、`continueOnBlock`、`terminalSequence`、Stop hook safety cap
+  - MCP stdio server 自动带 `CLAUDE_PROJECT_DIR`
+  - Fast Mode 默认切到 Opus 4.7，API key 会静默禁用 Remote Control / `/schedule` / claude.ai connectors
+
+### 中文 fork 处理
+
+- 将会影响自动化、安全边界和命令行为的变化改写成适合中文用户理解的说明
+- 保留所有 CLI flags、JSON key、环境变量和命令名原样
+- 更新 hooks 事件数和版本脚注，避免中文仓库继续引用旧口径
+- 保持根目录中文默认入口，不引入上游英文 README 或其他语言目录改动
+- 更新 `README.md` 和 `UPSTREAM.md` 的最近同步记录
+
 ## 中文版同步 — 2026-05-16
 
 ### 上游审阅

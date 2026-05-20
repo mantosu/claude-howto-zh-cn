@@ -338,6 +338,18 @@ manifest 顶层可以加一个 `monitors` 字段，例如：
 另外，上游这轮还修了一个很容易踩的点：
 如果你在 `plugin.json` 里列出一部分 `skills`，默认 `skills/` 目录里的其他 skills 不会再被“遮住”，而是会合并发现。
 
+### plugin 启用后，`bin/` 目录会自动进 `PATH`
+
+从 `v2.1.139` 开始，plugin 启用后它自己的 `bin/` 目录会自动 prepend 到当前 session 的 `PATH`。
+
+### `claude plugin details <name>`：先看清再装
+
+从 `v2.1.139` 开始，可以用：
+
+```bash
+claude plugin details <name>
+```
+
 这意味着团队可以更细粒度地限制：
 
 - 哪些 marketplace 根本不能装

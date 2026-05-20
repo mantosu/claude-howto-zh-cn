@@ -10,6 +10,7 @@ dependencies = [
     "markdown",
     "beautifulsoup4",
     "httpx",
+    "pyyaml",
     "pillow",
     "tenacity",
     "jinja2",

@@ -524,6 +524,14 @@ cat error.log | claude -p "Explain this error"
 对中国用户来说，可以把它理解成：<br>
 **不是“消息提醒功能”，而是“长任务别一直守着”的补充能力。**
 
+### `Remote Control` / `/schedule` / claude.ai connectors 在 API key 模式下会一起被关掉
+
+从 `v2.1.139` 开始，如果设置了下面任一项：
+
+- `ANTHROPIC_API_KEY`
+- `ANTHROPIC_AUTH_TOKEN`
+- `apiKeyHelper`
+
 ### print mode 使用建议
 
 - 任务尽量清晰明确
@@ -631,6 +639,10 @@ worktrees 特别适合：
 ```
 
 如果你在 `v2.1.128` 那段时间习惯了“worktree 自动继承我本地未推送改动”，这轮需要特别注意默认值已经回到更保守的 `"fresh"`。
+
+### `worktree.bgIsolation`：后台 session 要不要单独 worktree
+
+从 `v2.1.143` 开始，还能控制后台 session（例如 `/bg`、`claude --bg`、Agent View 派发）是默认单独开 worktree，还是用 `"none"` 直接改当前前台工作副本。
 
 ---
 

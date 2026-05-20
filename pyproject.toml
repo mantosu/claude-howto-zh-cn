@@ -1,0 +1,8 @@
+[project]
+name = "claude-howto-root"
+version = "0.1.0"
+description = "Root runtime dependencies for repository-level validation commands"
+requires-python = ">=3.10"
+dependencies = [
+    "pyyaml>=6.0",
+]

@@ -5,7 +5,7 @@
 - 上游仓库：[`luongnv89/claude-howto`](https://github.com/luongnv89/claude-howto)
 - 上游分支：`main`
 - 本地化基线 commit：`0ca8c37c81918458e063739425c4740ca92c2db2`
-- 最近检查到的上游 commit：`3557d791f54e916fe30750afb9866b3642a665bd`
+- 最近检查到的上游 commit：`30d5ad52bc5d0ecac24a5250ca812213566d47a0`
 - 上游许可证：[MIT License](LICENSE)
 
 ## 本仓库性质
@@ -61,6 +61,21 @@ uv run python scripts/validate_localization.py
    - 哪些内容暂时未同步
 
 ## 最近一次同步记录
+
+### 上游同步 — 2026-05-20
+
+- Reviewed upstream range: `3557d79` → `30d5ad5`
+- 重点上游变化：
+  - Claude Code 教程覆盖更新到 `v2.1.143`
+  - 新增 `/goal`、`/scroll-speed`、`claude agents` Agent View、`claude plugin details`
+  - hooks 增加 `args` exec 形式、`continueOnBlock`、`terminalSequence`、Stop hook block safety cap
+  - plugins、Remote Control、`/schedule`、Windows PowerShell tool、Fast Mode 默认模型出现多项行为更新
+  - MCP stdio server 现在自动带 `CLAUDE_PROJECT_DIR`
+- Chinese fork actions:
+  - 将会影响真实使用和自动化行为的变化同步到中文主线文档
+  - 保留 `/goal`、`claude agents`、`continueOnBlock`、`CLAUDE_PROJECT_DIR`、`CLAUDE_CODE_OPUS_4_6_FAST_MODE_OVERRIDE` 等可执行标识原文
+  - 不引入上游英文根 README 或其他语言目录改动，继续维护 `lhfer/claude-howto-zh-cn` 的中文默认入口
+  - 更新 `README.md`、`UPSTREAM.md` 和 `CHANGELOG.md` 的最近同步记录
 
 ### 上游同步 — 2026-05-16
 

@@ -79,6 +79,12 @@ claude mcp add --transport http notion https://mcp.notion.com/mcp
 claude mcp add --transport stdio myserver -- npx @myorg/mcp-server
 ```
 
+从 `v2.1.139+` 开始，stdio MCP server 启动时会自动带上：
+
+```text
+CLAUDE_PROJECT_DIR=<仓库根目录绝对路径>
+```
+
 ---
 
 ## 直接复制示例配置

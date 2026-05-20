@@ -230,6 +230,14 @@ cp 04-subagents/code-reviewer.md .claude/agents/
 - 如果某个 agent 依赖 Git、Python、Node、数据库 CLI 等工具，最好在正文里写清依赖。
 - Windows 环境下尤其要提前确认路径和命令兼容性。
 
+### `subagent_type` 现在不怕大小写和分隔符写错
+
+从 `v2.1.140` 开始，`subagent_type` 的匹配会忽略大小写和分隔符形式：
+
+- `code-reviewer`
+- `Code Reviewer`
+- `code_reviewer`
+
 ---
 
 ## main-thread agent 这轮更新最值得知道什么

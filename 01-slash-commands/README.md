@@ -46,6 +46,7 @@ Claude Code 里的 slash commands 大致分四类：
 | `/plugin` | 管理 plugins |
 | `/plan` | 进入 planning mode |
 | `/focus` | 切换 focus view，减少长任务时的视觉干扰 |
+| `/goal <目标>` | 给当前 session 注册一个持续追踪的完成目标 |
 | `/less-permission-prompts` | 分析常见 Bash / MCP 调用，帮你生成更合理的 allowlist |
 | `/proactive` | `/loop` 的别名 |
 | `/recap` | 回来继续 session 时，快速看一眼刚刚做了什么 |
@@ -54,6 +55,7 @@ Claude Code 里的 slash commands 大致分四类：
 | `/rewind` | 回退到 checkpoint |
 | `/undo` | `/rewind` 的别名 |
 | `/resume` | 恢复以前的 session |
+| `/scroll-speed <+N|-N>` | 调整 TUI live preview 的鼠标滚轮滚动速度 |
 | `/team-onboarding` | 生成一份适合新同事的 Claude Code 上手说明 |
 | `/tui` | 切换全屏 TUI（Text User Interface）模式 |
 | `/ultraplan` | 先产出详细计划，再在浏览器中审阅 |
@@ -169,6 +171,8 @@ cp 01-slash-commands/optimize.md .claude/commands/
 - `/ultraplan` 新增，适合端到端计划工作流
 - `/schedule` 更偏向 Cloud scheduled tasks，不再只是本地提醒
 - `/init` 的交互增强模式现在更常见的写法是 `CLAUDE_CODE_NEW_INIT=1`
+- `/goal` 新增，会把“这轮什么时候算完成”变成一个显式的 session 目标
+- `/scroll-speed` 新增，用来调 TUI live preview 的滚动速度，设置会按机器持久化
 
 ---
 

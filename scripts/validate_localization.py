@@ -1,3 +1,7 @@
+#!/usr/bin/env -S uv run --script
+# /// script
+# dependencies = ["pyyaml"]
+# ///
 """Validate localization-sensitive files in the repository."""
 
 from __future__ import annotations

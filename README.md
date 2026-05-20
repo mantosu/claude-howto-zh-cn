@@ -20,13 +20,13 @@
 
 ## 最近同步
 
-- **最近同步日期**：2026-05-16
-- **本轮参考范围**：`553a319` -> `3557d79`
+- **最近同步日期**：2026-05-20
+- **本轮参考范围**：`3557d79` -> `30d5ad5`
 - **本次同步内容**：
-  - 同步上游新增的静态网站生成器、资源下载脚本、模板、测试和 GitHub Pages workflow
-  - 为脚本链路补齐 `jinja2` 依赖、`.vendor-cache` / `site/` 忽略规则，以及中文版 `scripts/README.md` 使用说明
-  - 实际跑通网站构建相关测试与整套脚本测试，确认新增能力可运行
-  - 保持中文默认入口不变，不引入上游其他语言目录改动，也不把根目录中文主线替换回英文 README
+  - 同步 Claude Code `v2.1.143` 相关教程变化，补充 `/goal`、`/scroll-speed`、Agent View、plugin details、hooks `args` / `continueOnBlock` / `terminalSequence` 等说明
+  - 补充 API key 会静默禁用 Remote Control / `/schedule` / claude.ai connectors 的限制，以及 Windows PowerShell tool 默认行为变化
+  - 更新 hooks 事件总数口径、Fast Mode 默认模型说明和若干环境变量说明
+  - 保持中文默认入口不变，不引入上游英文根 README 或其他语言目录改动
 
 ---
 
