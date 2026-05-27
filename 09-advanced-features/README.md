@@ -363,6 +363,17 @@ claude --tui
 - `/focus` 更适合做“只看重点输出”的切换
 - `Ctrl+O` 现在更偏向普通 / verbose transcript 切换
 
+### Markdown 任务清单复选框渲染
+
+`v2.1.149+` 的富文本渲染支持 GitHub-Flavored Markdown 任务清单复选框。也就是说，像下面这样的内容会显示成复选框：
+
+```markdown
+- [ ] 待确认
+- [x] 已完成
+```
+
+这对计划、验收清单和 code review checklist 很实用。注意 `- [ ]` / `- [x]` 这类 Markdown 语法本身不要中文化改写。
+
 ## Monitor Tool（监控工具）
 
 Monitor Tool 是上游最近更明确写进文档的新重点。它的核心价值是：

@@ -477,6 +477,7 @@ Windows 用户建议尽早确认自己使用的是：
 
 从 `v2.1.139` 开始，`claude agents` 不只是列出 agents，而是打开一个多 session 管理界面。
 从 `v2.1.145` 开始，可以加 `--json` 输出机器可读列表，方便你接到 tmux 状态栏、自定义 session picker 或自动巡检脚本里。
+从 `v2.1.147` 开始，在 `claude agents` 视图里可以对某个 session 按 `Ctrl+T` 进行 pin。已固定的后台 session 空闲时会被优先保留，Claude Code 升级时会在原位重启，遇到内存压力时也会排在未固定 session 之后再被清理。注意这里的 `Ctrl+T` 只作用于 Agent View；主会话里的 `Ctrl+T` 仍是任务列表视图切换。
 
 - 先熟练 `claude`、`claude -p`、`claude -c`、`claude -r`
 - 自动化从小任务开始

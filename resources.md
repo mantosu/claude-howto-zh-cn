@@ -17,10 +17,12 @@
 
 | 能力 | 说明 | 入口 |
 |------|------|------|
-| `/usage-credits` | 配置额外用量额度；`/extra-usage` 仍可作为 alias | [Slash Commands](01-slash-commands/) |
+| `/usage-credits` | 配置额外用量额度；`/extra-usage` 仍可作为 alias（别名） | [Slash Commands](01-slash-commands/) |
 | `/run` / `/verify` | bundled skills，用于启动项目并确认改动真实可用 | [Skills Guide](03-skills/) |
 | `/run-skill-generator` | 为项目生成专属 run / verify skill | [Skills Guide](03-skills/) |
 | `claude agents --json` | 输出机器可读的 Agent View 列表 | [CLI Guide](10-cli/) |
-| `background_tasks` / `session_crons` | Stop / SubagentStop hook 输入新增字段 | [Hooks Guide](06-hooks/) |
+| `/code-review [effort]` | 内置审查命令；`v2.1.146` 起由 `/simplify` 改名而来，旧名不再作为 alias（别名） | [Skills Guide](03-skills/) |
+| `claude agents` 里的 `Ctrl+T` | 固定后台 session，空闲时优先保留 | [CLI Guide](10-cli/) |
+| `allowAllClaudeAiMcps` | 组织级允许加载 claude.ai 云端 MCP connectors 的托管设置 | [MCP Guide](05-mcp/) |
 
 这些名称都是可执行标识或协议字段，不要翻译成中文 key。

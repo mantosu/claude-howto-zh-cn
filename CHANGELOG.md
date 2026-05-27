@@ -2,6 +2,29 @@
 
 > 本文件保留上游版本信息的时间顺序，但用中文补充阅读说明，方便中文用户快速判断“这个仓库最近同步了什么”。
 
+## 中文版同步 — 2026-05-27
+
+### 上游审阅
+
+- 核对上游范围：`46941a3` → `c726139`
+- 上游这轮重点：
+  - 同步 Claude Code `v2.1.150`
+  - 内置 `/simplify` 改名为 `/code-review`，旧名不再作为 alias（别名）使用
+  - `/code-review` 支持 effort 参数，例如 `/code-review high`，并可用 `--comment` 在 PR 里写行内评论
+  - `/usage` 成本视图按 skills、subagents、plugins、MCP server 等类别拆分
+  - `claude agents` 视图支持 `Ctrl+T` 固定后台 session
+  - Markdown 渲染支持 GFM 任务清单复选框（`- [ ]` / `- [x]`）
+  - 新增托管设置：`allowAllClaudeAiMcps`
+  - 移除 Stop / SubagentStop `background_tasks`、`session_crons` 字段说明，因为它们未列入当前官方 hooks reference
+
+### 中文 fork 处理
+
+- 将本仓库示例 skill 目录从 `03-skills/code-review/` 改名为 `03-skills/code-review-specialist/`，避免遮蔽新版内置 `/code-review`
+- 更新 README、速查卡、功能总表、skills、hooks、MCP、CLI、advanced features 与概念总览中的中文说明
+- 保留 `/code-review`、`--comment`、`Ctrl+T`、`allowAllClaudeAiMcps`、`- [ ]`、`- [x]` 等可执行标识原文
+- 不引入上游 `ja/`、`uk/`、`vi/`、`zh/` 等额外多语言目录改动，继续保持根目录中文主线结构
+- 更新 `README.md` 和 `UPSTREAM.md` 的最近同步记录
+
 ## 中文版同步 — 2026-05-23
 
 ### 上游审阅
@@ -10,7 +33,7 @@
 - 上游这轮重点：
   - 修正多语言 root-level README 的 logo 相对路径
   - 同步 Claude Code `v2.1.145`
-  - `/extra-usage` 主名称改为 `/usage-credits`，旧命令仍作为 alias 保留
+  - `/extra-usage` 主名称改为 `/usage-credits`，旧命令仍作为 alias（别名）保留
   - `/model` 默认只影响当前 session，选择模型后按 `d` 才写入后续 session 默认值
   - 新增 bundled skills：`/run`、`/verify`、`/run-skill-generator`
   - Stop / SubagentStop hook 输入新增 `background_tasks` 和 `session_crons`
@@ -331,7 +354,7 @@
   - 新增 MCP OAuth 2.0、Tool Search、Claude.ai Connectors
   - 新增 subagents 的 persistent memory 与 worktree isolation
   - 新增 background subagents、task list、prompt suggestions
-  - 新增 sandboxing 与 managed settings
+  - 新增 sandboxing 与托管设置
   - 新增 HTTP hooks 和 7 个新事件
   - 新增 plugin settings、LSP、marketplace 相关说明
   - 补充 checkpoints 的 summarize from checkpoint

@@ -48,6 +48,7 @@ Claude Code 里的 slash commands 大致分四类：
 | `/focus` | 切换 focus view，减少长任务时的视觉干扰 |
 | `/goal <目标>` | 给当前 session 注册一个持续追踪的完成目标 |
 | `/less-permission-prompts` | 分析常见 Bash / MCP 调用，帮你生成更合理的 allowlist |
+| `/code-review [effort]` | 审查当前 diff 的正确性缺陷；`v2.1.146` 起由 `/simplify` 改名而来，旧名不再作为 alias（别名） |
 | `/proactive` | `/loop` 的别名 |
 | `/recap` | 回来继续 session 时，快速看一眼刚刚做了什么 |
 | `/sandbox` | 切换 sandbox 模式 |
@@ -60,8 +61,8 @@ Claude Code 里的 slash commands 大致分四类：
 | `/tui` | 切换全屏 TUI（Text User Interface）模式 |
 | `/ultraplan` | 先产出详细计划，再在浏览器中审阅 |
 | `/ultrareview` | 用云端多代理做一轮更重的综合代码审查 |
-| `/usage` | 查看 plan 用量与限流状态 |
-| `/usage-credits` | 配置额外用量额度；`/extra-usage` 仍可作为 alias 使用 |
+| `/usage` | 查看 plan 用量、限流状态和成本；`v2.1.149+` 起成本视图会按类别拆分 |
+| `/usage-credits` | 配置额外用量额度；`/extra-usage` 仍可作为 alias（别名）使用 |
 
 这些命令不用安装，开箱即用。
 

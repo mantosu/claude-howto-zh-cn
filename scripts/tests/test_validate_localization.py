@@ -65,7 +65,7 @@ def test_validate_protected_snippets_detects_missing_tokens(tmp_path: Path) -> N
             "UPSTREAM.md\n"
         ),
         "01-slash-commands/pr.md": "allowed-tools:\nBash(git add:*)\n",
-        "03-skills/code-review/SKILL.md": "name: code-review-specialist\n## 审查模板\n",
+        "03-skills/code-review-specialist/SKILL.md": "name: code-review-specialist\n## 审查模板\n",
         "04-subagents/code-reviewer.md": "name: code-reviewer\n",
         "05-mcp/github-mcp.json": '{"mcpServers": {"github": {}}}\n',
         "07-plugins/pr-review/.claude-plugin/plugin.json": '{"name": "pr-review"}\n',

@@ -20,13 +20,13 @@
 
 ## 最近同步
 
-- **最近同步日期**：2026-05-23
-- **本轮参考范围**：`7e369ee` -> `46941a3`
+- **最近同步日期**：2026-05-27
+- **本轮参考范围**：`46941a3` -> `c726139`
 - **本次同步内容**：
-  - 同步 Claude Code `v2.1.145` 相关口径：`/usage-credits`、`/model` session-only 默认行为、`claude agents --json`
-  - 补充 `/run`、`/verify`、`/run-skill-generator` 三个 bundled skills，以及 Stop / SubagentStop hook 新字段
-  - 记录 Bash 裸环境变量 allowlist 自动批准漏洞已修复，避免中文用户继续按旧权限规则配置
-  - 审阅上游多语言目录 root-level logo 路径修正；本 fork 不维护额外多语言目录树，因此不引入对应子目录改动
+  - 同步 Claude Code `v2.1.150` 相关口径：`/simplify` 已改名为 `/code-review`，旧名不再作为 alias（别名）使用
+  - 将本仓库示例 skill 从 `03-skills/code-review/` 改为 `03-skills/code-review-specialist/`，避免遮蔽新版内置 `/code-review`
+  - 补充 `/usage` 按类别拆分成本、`claude agents` 里 `Ctrl+T` 固定 session、GFM 任务清单复选框渲染和 `allowAllClaudeAiMcps`
+  - 移除上一轮记录的 Stop / SubagentStop `background_tasks`、`session_crons` 字段说明；它们未出现在当前官方 hooks reference 中
 
 ---
 
@@ -194,7 +194,7 @@ cp 02-memory/project-CLAUDE.md /path/to/your-project/CLAUDE.md
 
 # 5. 安装一个 skill
 mkdir -p ~/.claude/skills
-cp -r 03-skills/code-review ~/.claude/skills/
+cp -r 03-skills/code-review-specialist ~/.claude/skills/
 ```
 
 如果你想在 1 小时内完成最小可用配置，可以继续：
@@ -207,7 +207,7 @@ cp 01-slash-commands/*.md .claude/commands/
 cp 02-memory/project-CLAUDE.md ./CLAUDE.md
 
 # A reusable skill（可复用 skill）
-cp -r 03-skills/code-review ~/.claude/skills/
+cp -r 03-skills/code-review-specialist ~/.claude/skills/
 
 # 周末目标：继续加 hooks、MCP、subagents、plugins
 ```

@@ -5,7 +5,7 @@
 - 上游仓库：[`luongnv89/claude-howto`](https://github.com/luongnv89/claude-howto)
 - 上游分支：`main`
 - 本地化基线 commit：`0ca8c37c81918458e063739425c4740ca92c2db2`
-- 最近检查到的上游 commit：`46941a38fc9a6beeca02b755a29110465de87059`
+- 最近检查到的上游 commit：`c7261394b0719ae12246e8212768100dbdedecd0`
 - 上游许可证：[MIT License](LICENSE)
 
 ## 本仓库性质
@@ -62,13 +62,33 @@ uv run python scripts/validate_localization.py
 
 ## 最近一次同步记录
 
+### 上游同步 — 2026-05-27
+
+- Reviewed upstream range: `46941a3` → `c726139`
+- 重点上游变化：
+  - Claude Code 教程覆盖更新到 `v2.1.150`
+  - 内置 `/simplify` 改名为 `/code-review`，旧名不再作为 alias（别名）使用
+  - `/code-review` 支持 effort 参数，例如 `/code-review high`，并可用 `--comment` 写 GitHub PR 行内评论
+  - `/usage` 成本视图按 skills、subagents、plugins、MCP server 等类别拆分
+  - `claude agents` 视图支持 `Ctrl+T` 固定后台 session
+  - Markdown 渲染支持 GFM 任务清单复选框（`- [ ]` / `- [x]`）
+  - 新增托管设置：`allowAllClaudeAiMcps`
+  - 上游将本地示例 `code-review` skill 改为 `code-review-specialist`，避免遮蔽新版内置 `/code-review`
+  - 移除 Stop / SubagentStop `background_tasks`、`session_crons` 字段说明，因为它们未列入当前官方 hooks reference
+- Chinese fork actions:
+  - 将本仓库示例 skill 目录从 `03-skills/code-review/` 改名为 `03-skills/code-review-specialist/`
+  - 更新 README、CHANGELOG、功能总表、速查卡、skills、hooks、MCP、CLI、advanced features 与概念总览中的中文说明
+  - 保留 `/code-review`、`--comment`、`Ctrl+T`、`allowAllClaudeAiMcps`、`- [ ]`、`- [x]` 等可执行标识原文
+  - 不引入上游 `ja/`、`uk/`、`vi/`、`zh/` 等额外多语言目录改动，继续维护根目录中文默认入口
+  - 更新 `README.md`、`UPSTREAM.md` 和 `CHANGELOG.md` 的最近同步记录
+
 ### 上游同步 — 2026-05-23
 
 - Reviewed upstream range: `7e369ee` → `46941a3`
 - 重点上游变化：
   - 上游先修正 `uk/`、`vi/`、`zh/` 等多语言 root-level README 的 logo 相对路径
   - Claude Code 教程覆盖更新到 `v2.1.145`
-  - `/extra-usage` 主名称改为 `/usage-credits`，旧名继续作为 alias 可用
+  - `/extra-usage` 主名称改为 `/usage-credits`，旧名继续作为 alias（别名）可用
   - `/model` 选择默认只影响当前 session；选择后按 `d` 才会设置成后续 session 默认模型
   - 新增 bundled skills：`/run`、`/verify`、`/run-skill-generator`
   - Stop / SubagentStop hook 输入新增 `background_tasks` 和 `session_crons`

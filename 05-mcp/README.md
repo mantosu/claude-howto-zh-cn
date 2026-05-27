@@ -126,6 +126,14 @@ cp 05-mcp/multi-mcp.json .mcp.json
 
 ---
 
+## `allowAllClaudeAiMcps`：组织级允许 claude.ai 云端 MCP connectors
+
+`v2.1.149+` 新增了一个托管设置：`allowAllClaudeAiMcps`。它面向企业或团队管理员，用来允许组织范围内加载 claude.ai 云端 MCP connectors。
+
+这个 key 是配置标识，不要翻译或改名。普通个人用户通常不用主动配置它；只有你在管理团队策略、统一放开 claude.ai 云端 MCP connectors 时，才需要把它纳入托管设置。
+
+---
+
 ## 哪些内容不能翻
 
 MCP 配置是高风险文件，以下内容默认不要翻：
@@ -136,6 +144,7 @@ MCP 配置是高风险文件，以下内容默认不要翻：
 - `args`
 - `env`
 - `alwaysLoad`
+- `allowAllClaudeAiMcps`
 - 环境变量名，例如 `GITHUB_TOKEN`
 
 正文解释可以中文化，但 JSON key 和 server 名称不要改。

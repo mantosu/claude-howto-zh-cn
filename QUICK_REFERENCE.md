@@ -38,10 +38,10 @@ cp 02-memory/personal-CLAUDE.md ~/.claude/CLAUDE.md
 
 ```bash
 # 个人 skills
-cp -r 03-skills/code-review ~/.claude/skills/
+cp -r 03-skills/code-review-specialist ~/.claude/skills/
 
 # 项目 skills
-cp -r 03-skills/code-review .claude/skills/
+cp -r 03-skills/code-review-specialist .claude/skills/
 ```
 
 ### Subagents（子代理）
@@ -103,7 +103,9 @@ chmod +x ~/.claude/hooks/*.sh
 /team-onboarding
 
 # 额外用量配置
-/usage-credits       # `/extra-usage` 仍可作为兼容 alias
+/usage-credits       # `/extra-usage` 仍可作为兼容 alias（别名）
+/usage               # v2.1.149+ 成本视图会按类别拆分
+/code-review high    # v2.1.146+，由旧 `/simplify` 改名而来
 
 # 常见 permission mode
 claude --permission-mode default
@@ -174,7 +176,7 @@ cp 01-slash-commands/optimize.md .claude/commands/
 cp 04-subagents/code-reviewer.md .claude/agents/
 
 # 方法 3：skill
-cp -r 03-skills/code-review ~/.claude/skills/
+cp -r 03-skills/code-review-specialist ~/.claude/skills/
 
 # 方法 4：plugin
 /plugin install pr-review
@@ -256,7 +258,7 @@ claude -p "Run tests" --permission-mode dontAsk
 - shell 命令
 - 环境变量
 - slash command / skill / plugin / subagent 的名称
-- hook 输入字段，例如 `background_tasks`、`session_crons`
+- hook 输入字段和输出 key，例如 `effort.level`、`CLAUDE_EFFORT`、`hookSpecificOutput.updatedToolOutput`
 
 ---
 

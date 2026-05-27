@@ -85,7 +85,7 @@ LINK_VALIDATION_PATHS = [
     Path("10-cli/README.md"),
     Path("scripts/README.md"),
     Path("01-slash-commands"),
-    Path("03-skills/code-review/SKILL.md"),
+    Path("03-skills/code-review-specialist/SKILL.md"),
     Path("04-subagents"),
 ]
 
@@ -103,7 +103,7 @@ PROTECTED_SNIPPETS = {
         "Bash(git status:*)",
         "Bash(git diff:*)",
     ],
-    Path("03-skills/code-review/SKILL.md"): [
+    Path("03-skills/code-review-specialist/SKILL.md"): [
         "name: code-review-specialist",
         "## 审查模板",
     ],

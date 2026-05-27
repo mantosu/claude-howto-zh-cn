@@ -203,13 +203,15 @@ cat error.log | claude -p "explain this error"
 ```bash
 # 安装一个 skill
 mkdir -p ~/.claude/skills
-cp -r 03-skills/code-review ~/.claude/skills/
+cp -r 03-skills/code-review-specialist ~/.claude/skills/
 
 # 安装一个 hook 脚本
 mkdir -p ~/.claude/hooks
 cp 06-hooks/pre-commit.sh ~/.claude/hooks/
 chmod +x ~/.claude/hooks/pre-commit.sh
 ```
+
+这里使用 `code-review-specialist` 是为了避开 Claude Code `v2.1.146+` 内置的 `/code-review` 命令；不要把这个示例 skill 随手改回 `code-review`。
 
 ---
 

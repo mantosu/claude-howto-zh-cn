@@ -286,14 +286,11 @@ hooks 通常通过 `stdin` 接收 JSON 输入。
 
 - `CLAUDE_CODE_SESSION_ID`：可用来把 Bash 日志和 hook telemetry 对到同一个 session
 
-### Stop / SubagentStop 现在能看到后台任务和定时任务
+### 不要依赖未列入官方 reference 的 Stop / SubagentStop 字段
 
-从 `v2.1.145+` 开始，`Stop` 和 `SubagentStop` hook 的输入里会额外带两个数组：
+上一轮同步曾按 release notes 记录过 `background_tasks` 和 `session_crons`，但它们没有出现在当前官方 hooks reference 的字段列表里。为了避免中文用户写出依赖不稳定输入的 hook，本版移除了这两个字段的用法说明。
 
-- `background_tasks`：当前 session 启动过的后台任务
-- `session_crons`：当前 session 里创建过的 cron / `/schedule` 任务
-
-这对“结束前再确认一遍”的 hook 很有用。比如你可以在还有后台测试没结束、或者刚创建的 scheduled task 还没验证时，阻止 Claude 过早收尾。
+如果你想在 session 结束前做兜底检查，更稳的做法是让 hook 读取你自己维护的状态文件、测试锁文件或 CI 状态，而不是假设 Stop / SubagentStop 输入一定包含这两个数组。
 
 ### `updatedToolOutput` 现在不只限 MCP 工具
 
