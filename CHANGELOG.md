@@ -2,6 +2,28 @@
 
 > 本文件保留上游版本信息的时间顺序，但用中文补充阅读说明，方便中文用户快速判断“这个仓库最近同步了什么”。
 
+## 中文版同步 — 2026-06-03
+
+### 上游审阅
+
+- 核对上游范围：`e30220c` → `fcdc088`
+- 上游这轮重点：
+  - 同步 Claude Code `v2.1.160`
+  - `claude plugin init <name>` 可在 `.claude/skills` 中脚手架新 plugin；放在该目录的 plugin 会自动加载，不再需要 marketplace
+  - Auto Mode 支持 Bedrock / Vertex / Foundry 上的 Opus 4.7 / 4.8，但需要显式设置 `CLAUDE_CODE_ENABLE_AUTO_MODE=1`
+  - `EnterWorktree` 可以在 session 中切换 Claude 管理的 worktree；结束后的 worktree 保持 unlocked，方便 `git worktree remove` / `prune` 清理
+  - `acceptEdits` 对 shell 启动文件和可执行构建配置写入仍会提示确认，避免把自动批准扩展到可能执行命令的配置
+  - dynamic workflows 的触发关键词改为 `ultracode`，裸词 `workflow` 不再触发运行
+  - `CLAUDE_CODE_OPUS_4_6_FAST_MODE_OVERRIDE` 在 `v2.1.160` 起为 no-op
+  - 上游修正 `ja` / `uk` / `vi` 翻译里的 settings 优先级描述
+
+### 中文 fork 处理
+
+- 将 plugin 初始化、Auto Mode 云厂商 opt-in、worktree 切换、安全提示和 workflow 触发变化写入中文主线文档
+- 保留 `claude plugin init <name>`、`CLAUDE_CODE_ENABLE_AUTO_MODE`、`EnterWorktree`、`acceptEdits`、`ultracode`、`git worktree remove`、`prune` 等可执行标识原文
+- 不引入上游英文根 README，也不新增 `ja` / `uk` / `vi` 目录；这些语言目录的修正已审阅，本仓库根目录中文文档已保持正确 settings 优先级
+- 更新 `README.md`、`UPSTREAM.md` 和 `CHANGELOG.md` 的最近同步记录
+
 ## 中文版同步 — 2026-06-01
 
 ### 上游审阅

@@ -149,8 +149,11 @@ claude --append-system-prompt "Always explain tradeoffs" "review this plan"
 - Opus 主线已经切到 **Opus 4.8**
 - Opus 4.8 默认 effort 是 `high`；`xhigh` 适用于 Opus 4.8 / 4.7，`max` 适用于 Opus 4.8 / 4.7 / 4.6 和 Sonnet 4.6
 - `/model` 现在默认保存为后续 session 默认值；如果只想作用于当前 session，选中后按 `s`
-- Fast Mode 默认切到 Opus 4.8；`CLAUDE_CODE_OPUS_4_6_FAST_MODE_OVERRIDE` 已弃用并在 2026-06-01 移除
+- Fast Mode 默认切到 Opus 4.8；`CLAUDE_CODE_OPUS_4_6_FAST_MODE_OVERRIDE` 在 `v2.1.160` 起已经是 no-op
 - 新增 `/reload-skills` 和 `/workflows`，分别用于重扫 skills 和查看 dynamic workflows
+- 新增 `claude plugin init <name>`，可在 `.claude/skills` 中脚手架本地 plugin
+- Bedrock / Vertex / Foundry 上的 Auto Mode 需要显式设置 `CLAUDE_CODE_ENABLE_AUTO_MODE=1`
+- `EnterWorktree` 可以在同一 session 中切换 Claude 管理的 worktree
 - Windows 侧正在逐步拿到更专门的 PowerShell tool
 - 主题里新增了更贴近终端外观的 Auto 模式
 - 只读型 Bash / Glob 调用的权限提示比以前更安静
@@ -275,6 +278,7 @@ claude --add-dir ../frontend ../backend ../shared "find all API endpoints"
 - `claude mcp`
 - `claude mcp serve`
 - `claude plugin`
+- `claude plugin init <name>`
 - `claude plugin prune`
 - `claude plugin uninstall <name> --prune`
 
@@ -285,6 +289,7 @@ claude --add-dir ../frontend ../backend ../shared "find all API endpoints"
 ```bash
 claude mcp
 claude mcp serve
+claude plugin init my-plugin
 claude plugin install my-plugin
 claude plugin prune
 ```
@@ -374,7 +379,8 @@ claude ultrareview 1234 --json > review.json
 | `CLAUDE_CODE_FORCE_SYNC_OUTPUT` | 在终端能力自动检测失误时强制同步输出，例如 Emacs `eat` |
 | `CLAUDE_CODE_PACKAGE_MANAGER_AUTO_UPDATE` | 为 Homebrew / WinGet 安装启用后台升级 |
 | `CLAUDE_CODE_ENABLE_GATEWAY_MODEL_DISCOVERY` | 在设置了 `ANTHROPIC_BASE_URL` 时，显式开启 `/v1/models` 网关发现 |
-| `CLAUDE_CODE_OPUS_4_6_FAST_MODE_OVERRIDE` | 已弃用并在 2026-06-01 移除；如果仍想让 Opus 4.6 走 fast mode，先 `/model claude-opus-4-6[1m]`，再 `/fast on` |
+| `CLAUDE_CODE_ENABLE_AUTO_MODE` | 设为 `1` 后，在 Bedrock / Vertex / Foundry 上对 Opus 4.7 / 4.8 显式启用 Auto Mode |
+| `CLAUDE_CODE_OPUS_4_6_FAST_MODE_OVERRIDE` | `v2.1.160` 起已经是 no-op；如果仍想让 Opus 4.6 走 fast mode，先 `/model claude-opus-4-6[1m]`，再 `/fast on` |
 | `CLAUDE_CODE_DISABLE_ALTERNATE_SCREEN` | 设为 `1` 后，停留在普通终端滚动历史里，而不是 fullscreen alternate-screen 渲染 |
 | `CLAUDE_CODE_SESSION_ID` | 每个 Bash tool 子进程都会带上这个 session UUID，可用来和 hooks / telemetry 对日志 |
 | `CLAUDE_CODE_ENABLE_FEEDBACK_SURVEY_FOR_OTEL` | 在 OTEL 环境下重新打开 Anthropic 的会话质量问卷 |

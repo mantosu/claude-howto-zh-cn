@@ -81,6 +81,7 @@ chmod +x ~/.claude/hooks/*.sh
 /plugin install pr-review
 /plugin install devops-automation
 /plugin install documentation
+claude plugin init my-plugin
 ```
 
 ### Checkpoints（检查点）
@@ -109,6 +110,8 @@ chmod +x ~/.claude/hooks/*.sh
 /simplify            # 清理型审查并应用修复，不负责找 bug
 /reload-skills       # 重新扫描 skill 目录
 /workflows           # 查看 dynamic workflows
+ultracode            # 触发 dynamic workflows 的关键词，裸词 workflow 不再触发
+export CLAUDE_CODE_ENABLE_AUTO_MODE=1  # Bedrock / Vertex / Foundry 上显式启用 Auto Mode
 
 # 常见 permission mode
 claude --permission-mode default
@@ -124,6 +127,7 @@ claude --permission-mode bypassPermissions
 claude -c
 claude -r "session-name"
 claude agents --json   # 机器可读的 Agent View 列表
+git worktree prune     # 清理已解锁且不再使用的 worktree
 ```
 
 ---

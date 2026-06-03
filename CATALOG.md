@@ -207,6 +207,8 @@ plugin-name/
 
 `.claude-plugin/plugin.json` 是 manifest，`name`、`version`、`description`、`license` 这些 key 不要翻。
 
+从 `v2.1.157` 起，可以用 `claude plugin init <name>` 在 `.claude/skills` 中创建本地 plugin；该目录下的 plugin 会自动加载，不需要 marketplace。
+
 ---
 
 ## MCP（外部工具协议）
@@ -316,6 +318,10 @@ memory 是 Claude Code 用来长期加载规则和上下文的机制。
 - `/run-skill-generator`
 - `/reload-skills`
 - `/workflows`
+- `claude plugin init <name>`
+- `CLAUDE_CODE_ENABLE_AUTO_MODE=1`
+- `EnterWorktree`
+- dynamic workflows 触发关键词是 `ultracode`，裸词 `workflow` 不再触发
 - `claude agents --json`
 - `/model` 默认保存为后续 session 默认值；按 `s` 才只作用于当前 session
 - Opus 4.8 默认 effort 是 `high`

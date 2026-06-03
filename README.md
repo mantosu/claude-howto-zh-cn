@@ -20,14 +20,14 @@
 
 ## 最近同步
 
-- **最近同步日期**：2026-06-01
-- **本轮参考范围**：`c726139` -> `e30220c`
+- **最近同步日期**：2026-06-03
+- **本轮参考范围**：`e30220c` -> `fcdc088`
 - **本次同步内容**：
-  - 同步 Claude Code `v2.1.156` 与 Claude Opus `4.8` 相关口径，更新 `/effort`、Fast Mode 和模型说明
-  - 修正 `/model` 默认行为：现在默认保存为后续 session 默认值，按 `s` 才只作用于当前 session
-  - 补充 `/reload-skills`、`/workflows`、`disallowed-tools`、`MessageDisplay`、`reloadSkills`、`sessionTitle`、`COLUMNS` / `LINES`
-  - 修正 settings 优先级链：managed policy -> `.claude/settings.local.json` -> `.claude/settings.json` -> `~/.claude/settings.json`
-  - 更新 `/simplify` 口径：它在 `v2.1.154` 后重新成为独立的清理型命令，不再等同于 `/code-review`
+  - 同步 Claude Code `v2.1.160` 口径，补充 `claude plugin init <name>`、`CLAUDE_CODE_ENABLE_AUTO_MODE=1`、`EnterWorktree` 等新增使用面
+  - 说明 Auto Mode 在 Bedrock / Vertex / Foundry 上对 Opus 4.7 / 4.8 的 opt-in 方式
+  - 更新 dynamic workflows 触发口径：触发关键词是 `ultracode`，裸词 `workflow` 不再触发运行
+  - 补充 `acceptEdits` 对 shell 启动文件和可执行构建配置写入仍会提示确认的安全边界
+  - 核对上游 `ja` / `uk` / `vi` 的 settings 优先级修正；本中文根目录文档已是正确顺序，因此不新增其他语言目录
 
 ---
 
