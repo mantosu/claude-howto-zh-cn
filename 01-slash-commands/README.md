@@ -38,7 +38,7 @@ Claude Code 里的 slash commands 大致分四类：
 | `/config` | 查看或编辑设置 |
 | `/context` | 看上下文使用情况 |
 | `/model` | 切换模型；`v2.1.153+` 起默认保存为后续 session 默认值，选择后按 `s` 才只作用于当前 session |
-| `/effort [low|medium|high|xhigh|max|auto]` | 用交互滑杆调整思考强度；Opus 4.8 默认是 `high`，`xhigh` 适用于 Opus 4.8 / 4.7 |
+| `/effort`  | 用交互滑杆调整思考强度，从低到高分别为`low`/`medium`/`high`/`xhigh`/`max`/`auto`；Opus 4.8 默认是 `high`，`xhigh` 适用于 Opus 4.8 / 4.7 |
 | `/agents` | 查看可用 agents |
 | `/skills` | 查看可用 skills |
 | `/hooks` | 查看 hooks |
@@ -58,7 +58,7 @@ Claude Code 里的 slash commands 大致分四类：
 | `/resume` | 恢复以前的 session |
 | `/reload-skills` | 重新扫描 skill 目录，不需要重启当前 session |
 | `/workflows` | 查看正在运行和已完成的 dynamic workflows |
-| `/scroll-speed <+N|-N>` | 调整 TUI live preview 的鼠标滚轮滚动速度 |
+| `/scroll-speed`  | `<+N/-N>`调整 TUI live preview 的鼠标滚轮滚动速度 |
 | `/team-onboarding` | 生成一份适合新同事的 Claude Code 上手说明 |
 | `/tui` | 切换全屏 TUI（Text User Interface）模式 |
 | `/ultraplan` | 先产出详细计划，再在浏览器中审阅 |
